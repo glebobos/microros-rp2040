@@ -1,0 +1,25 @@
+services:
+  builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      # Mount the local 'src' directory so the container builds from it dynamically.
+      # The compiled .uf2 will appear in 'src/build' on your host.
+      - ./src:/project/src
+
+  # agent:
+  #   image: microros/micro-ros-agent:humble
+  #   privileged: true
+  #   network_mode: "host"
+  #   volumes:
+  #     - /dev:/dev
+  #   command: serial --dev /dev/ttyACM0 -b 115200
+
+  # client:
+  #   image: ros:humble-ros-base
+  #   network_mode: "host"
+  #   command: >
+  #     bash -c "source /opt/ros/humble/setup.bash &&
+  #              echo 'Waiting for micro-ROS agent and Pico to communicate...' &&
+  #              ros2 topic echo /pico_publisher"
