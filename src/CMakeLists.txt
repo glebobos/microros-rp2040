@@ -15,8 +15,11 @@ add_executable(pico_micro_ros_example
 )
 target_link_libraries(pico_micro_ros_example
     pico_stdlib
+    hardware_pio
     microros
 )
+
+pico_generate_pio_header(pico_micro_ros_example $ENV{PICO_SDK_PATH}/src/rp2_common/pico_status_led/ws2812.pio)
 
 target_include_directories(pico_micro_ros_example PUBLIC
     /project/libmicroros/include
